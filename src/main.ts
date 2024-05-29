@@ -20,16 +20,12 @@ async function bootstrap() {
     hbs.registerPartials(join(__dirname, '..', 'views/partials'));
 
     // handlebars helpers
-    hbs.registerHelper('prod', () => {
-        return process.env.NODE_ENV === 'production';
-    });
-    hbs.registerHelper('date', () => {
-        return new Date().toUTCString();
-    });
-    hbs.registerHelper('ver', () => {
-        return revision;
-    });
+    hbs.registerHelper('prod', () => process.env.NODE_ENV === 'production');
+    hbs.registerHelper('date', () => new Date().toUTCString());
+    hbs.registerHelper('year', () => new Date().getUTCFullYear());
+    hbs.registerHelper('version', () => revision);
 
     await app.listen(3000);
 }
+
 bootstrap();
